@@ -42,7 +42,17 @@ export function Navbar() {
             priority
             className="h-10 w-10 object-contain"
           />
-          <span>{site.name}</span>
+          <span className="flex flex-col leading-none">
+            <span>{site.name}</span>
+            <span className="mt-1 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-graphite/65">
+              <span aria-label="Italia" className="inline-flex h-[9px] w-[15px] overflow-hidden rounded-[1px] shadow-sm">
+                <span className="w-1/3 bg-[#009246]" />
+                <span className="w-1/3 bg-pure-white" />
+                <span className="w-1/3 bg-[#ce2b37]" />
+              </span>
+              Italia
+            </span>
+          </span>
         </Link>
         <nav
           aria-label="Hoofdnavigatie"
@@ -72,7 +82,7 @@ export function Navbar() {
             href="/pakketten"
             className="hidden rounded-[7.6px] bg-vivid-indigo px-[19px] py-[9px] text-[14px] font-medium text-pure-white hover:bg-[#3c3eb3] sm:inline-block"
           >
-            Pakketten bekijken
+            Scopri i pacchetti
           </Link>
           <button
             type="button"
@@ -135,7 +145,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="inline-flex w-full justify-center rounded-[7.6px] bg-vivid-indigo px-[19px] py-[11px] font-medium text-pure-white"
             >
-              Aanvraag sturen
+              Invia una richiesta
             </Link>
           </li>
         </ul>
