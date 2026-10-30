@@ -318,9 +318,11 @@ for (const category of licenseCategories) {
   category.subcategories = category.slug === "a"
     ? [{ code: "A1", label: "Motocicli leggeri" }, { code: "A2", label: "Motocicli medi" }, { code: "A", label: "Motocicli senza limitazioni" }]
     : category.slug === "c"
-      ? [{ code: "C1", label: "Autocarri leggeri" }, { code: "C", label: "Autocarri" }, { code: "CE", label: "Autocarri con rimorchio" }]
+      ? [{ code: "C1", label: "Autocarri leggeri" }, { code: "C1E", label: "C1 con rimorchio" }, { code: "C", label: "Autocarri" }, { code: "CE", label: "Autocarri con rimorchio" }]
       : category.slug === "d"
-        ? [{ code: "D1", label: "Minibus" }, { code: "D", label: "Autobus" }, { code: "DE", label: "Autobus con rimorchio" }]
+        ? [{ code: "D1", label: "Minibus" }, { code: "D1E", label: "D1 con rimorchio" }, { code: "D", label: "Autobus" }, { code: "DE", label: "Autobus con rimorchio" }]
+        : category.slug === "b"
+          ? [{ code: "B1", label: "Quadricicli non leggeri" }]
         : category.subcategories;
 }
 
