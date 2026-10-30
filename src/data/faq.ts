@@ -1,40 +1,12 @@
 import type { FaqItem } from "./license-categories";
 
 export const faq: FaqItem[] = [
-  {
-    q: "Hoe begin ik met een opleiding?",
-    a: "Kies het rijbewijs dat je wilt halen en bekijk de pakketten. Stuur daarna je aanvraag via het formulier. Daarna nemen wij contact met je op.",
-  },
-  {
-    q: "Wat is het verschil tussen een les en een pakket?",
-    a: "Een losse les is één praktijkles van 60 minuten. Een pakket bundelt meerdere lessen, zodat je in één keer een traject vastlegt.",
-  },
-  {
-    q: "Zijn de praktijklessen online?",
-    a: "Nee. De praktijklessen vinden altijd fysiek plaats met een instructeur. Online regelen we alleen informatie en je aanvraag.",
-  },
-  {
-    q: "Hoe werkt de theorie?",
-    a: "Je bereidt je voor op het theorie-examen. Het officiële examen leg je af bij het CBR. Op de theoriepagina lees je hoe dat werkt.",
-  },
-  {
-    q: "Is de getoonde prijs definitief?",
-    a: "Prijzen per rijbewijs zijn richtprijzen op basis van de Nederlandse markt. De prijzen van onze pakketten staan vast en zijn inclusief btw.",
-  },
-  {
-    q: "Wanneer betaal ik voor de lessen?",
-    a: "Na je aanvraag nemen we contact met je op om de lessen, planning en betalingsafspraken te bespreken.",
-  },
-  {
-    q: "Wat gebeurt er na mijn aanvraag?",
-    a: "Je krijgt een bevestiging per e-mail. Daarna neemt Stuurvast contact met je op om je vragen en lessen te bespreken.",
-  },
-  {
-    q: "Kan ik een spoedcursus volgen?",
-    a: "Ja. Pakket Spoedcursus bevat ongeveer 20 lessen in een intensief traject. Of het past, hangt af van je niveau en beschikbaarheid.",
-  },
-  {
-    q: "Wat als ik zenuwachtig ben voor het examen?",
-    a: "Daar is de Faalangsttraining voor. Je leert technieken om rustig te blijven op de examendag.",
-  },
+  { q: "Come inizio il percorso per la patente?", a: "Scegli la categoria che ti interessa, consulta le informazioni e invia la richiesta. Ti ricontatteremo per valutare il percorso più adatto." },
+  { q: "Qual è la differenza tra una lezione e un pacchetto?", a: "Una lezione singola è una prova pratica. Un pacchetto riunisce più lezioni e permette di organizzare il percorso con maggiore continuità." },
+  { q: "Le lezioni pratiche si svolgono online?", a: "No. Le lezioni pratiche si svolgono in presenza con un istruttore. Online gestiamo solo informazioni, richieste e appuntamenti." },
+  { q: "Come funziona l'esame di teoria?", a: "La teoria si prepara prima dell'esame ufficiale. Le modalità, i requisiti e le tariffe devono essere verificati sul Portale dell'Automobilista." },
+  { q: "I prezzi indicati sono definitivi?", a: "No. Sono stime indicative per la formazione e non includono necessariamente le tariffe ufficiali della Motorizzazione. Il preventivo finale dipende dalla categoria e dalle lezioni necessarie." },
+  { q: "Cosa succede dopo la richiesta?", a: "Ricevi una conferma via e-mail. Successivamente ti contattiamo per parlare di categoria, disponibilità, documenti e prossimi passi." },
+  { q: "Posso seguire un percorso intensivo?", a: "Sì, possiamo valutare un percorso intensivo in base alla tua esperienza, alla disponibilità e alle date d'esame." },
+  { q: "Cosa devo fare se sono nervoso per l'esame?", a: "Durante l'iscrizione puoi segnalarlo. Adatteremo il ritmo delle lezioni e lavoreremo sulle situazioni che ti mettono più in difficoltà." },
 ];

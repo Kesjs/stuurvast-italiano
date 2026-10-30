@@ -7,22 +7,22 @@ import { licenseCategories } from "@/data/license-categories";
 import { priceDisclaimer } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Rijbewijzen",
+  title: "Patenti di guida",
   description:
-    "Bekijk alle rijbewijscategorieën bij Stuurvast Rijschool: AM, A, B, BE, C, D en T, met richtprijzen.",
+    "Scopri le categorie di patente italiane AM, A1, A2, A, B1, B, BE, C1, C, CE, D1, D e DE, con stime indicative.",
 };
 
 export default function RijbewijzenPage() {
   return (
     <main>
       <PageHeader
-        eyebrow="Rijbewijzen"
+        eyebrow="Patenti di guida"
         image={{
           src: "/images/categories.webp",
-          alt: "Verschillende voertuigen op een rustig oefenterrein voor rijopleidingen",
+          alt: "Diversi veicoli per la formazione alla guida",
         }}
-        title="Kies het rijbewijs dat bij je past"
-        intro="Zeven categorieën, één duidelijk overzicht. Klik op een categorie voor voertuigen, voorwaarden en het verloop van de opleiding."
+        title="Scegli la patente adatta a te"
+        intro="Una panoramica chiara delle categorie italiane. Seleziona una categoria per vedere veicoli, requisiti e percorso."
       />
       <Section tone="gray">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

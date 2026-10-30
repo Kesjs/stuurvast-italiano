@@ -6,9 +6,9 @@ import { CtaBand } from "@/components/ui/CtaBand";
 import { faq } from "@/data/faq";
 
 export const metadata: Metadata = {
-  title: "Veelgestelde vragen",
+  title: "Domande frequenti",
   description:
-    "Antwoorden op de meest gestelde vragen over lessen, pakketten, theorie, aanvragen en examens bij Stuurvast Rijschool.",
+    "Risposte alle domande più frequenti su lezioni, pacchetti, teoria, richieste ed esami presso Stuurvast Autoscuola.",
 };
 
 export default function FaqPage() {
@@ -29,7 +29,7 @@ export default function FaqPage() {
           src: "/images/faq.webp",
           alt: "Illustratief beeld van een rijlesgesprek met notities en verkeersmateriaal",
         }}
-        title="Veelgestelde vragen"
+        title="Domande frequenti"
         intro="Staat je vraag er niet bij? Stuur ons een bericht."
       />
       <Section tone="gray">

@@ -18,6 +18,7 @@ export type LicenseCategory = {
   packageSlugs: string[];
   priceRows?: { label: string; value: string }[];
   faq: FaqItem[];
+  officialUrl?: string;
 };
 
 const common = {
@@ -298,6 +299,34 @@ export const licenseCategories: LicenseCategory[] = raw.map((c) => ({
   ...c,
   priceLabel: formatEUR(c.priceCents),
 }));
+
+// Categorie riconosciute in Italia. I prezzi sono stime formative indicative:
+// le tariffe ufficiali e il preventivo finale vanno verificati prima dell'iscrizione.
+const italianDetails: Record<string, Partial<LicenseCategory>> = {
+  am: { vehicleType: "Ciclomotori e quadricicli leggeri", shortDescription: "Patente AM, generalmente conseguibile dai 14 anni.", summary: "La patente AM consente di guidare ciclomotori e quadricicli leggeri fino a 45 km/h.", vehicles: ["Ciclomotori a due o tre ruote", "Scooter fino a 45 km/h", "Quadricicli leggeri"], priceCents: 85000, officialUrl: "https://www.mit.gov.it/come-fare-per/patenti-mezzi-e-abilitazioni/conseguimento-patente-am" },
+  a: { vehicleType: "Motocicli", shortDescription: "A1, A2 e A: la categoria dipende da età e potenza.", summary: "Le categorie A1, A2 e A riguardano motocicli con limiti diversi di età, potenza e cilindrata.", vehicles: ["Motocicli A1", "Motocicli A2", "Motocicli senza limitazioni"], priceCents: 120000, officialUrl: "https://www.mit.gov.it/come-fare-per/patenti-mezzi-e-abilitazioni/conseguimento-patente-a2-a" },
+  b: { vehicleType: "Autovetture", shortDescription: "La patente più comune per guidare un'automobile.", summary: "La patente B consente di guidare le normali autovetture e rappresenta il percorso più richiesto.", vehicles: ["Autovetture", "Veicoli fino a 3.500 kg", "Veicoli con rimorchio nei limiti previsti"], priceCents: 280000, officialUrl: "https://www.mit.gov.it/come-fare-per/patenti-mezzi-e-abilitazioni/conseguimento-patente-b" },
+  be: { vehicleType: "Auto con rimorchio", shortDescription: "Per complessi auto-rimorchio oltre i limiti della categoria B.", summary: "La patente BE abilita alla guida di complessi formati da un veicolo di categoria B e un rimorchio più pesante.", vehicles: ["Auto con rimorchio", "Auto con caravan", "Auto con rimorchio per trasporto"], priceCents: 90000, officialUrl: "https://www.mit.gov.it/come-fare-per/patenti-mezzi-e-abilitazioni/conseguimento-patente-be" },
+  c: { vehicleType: "Autocarri", shortDescription: "C1, C e CE per veicoli pesanti e complessi con rimorchio.", summary: "Le categorie C1, C e CE riguardano autocarri e complessi destinati al trasporto di merci.", vehicles: ["Autocarri leggeri C1", "Autocarri C", "Autocarri con rimorchio CE"], priceCents: 250000, officialUrl: "https://www.mit.gov.it/come-fare-per/patenti-mezzi-e-abilitazioni/conseguimento-patente-c1-c" },
+  d: { vehicleType: "Autobus", shortDescription: "D1, D e DE per il trasporto di passeggeri.", summary: "Le categorie D1, D e DE riguardano minibus, autobus e autobus con rimorchio.", vehicles: ["Minibus D1", "Autobus D", "Autobus con rimorchio DE"], priceCents: 300000, officialUrl: "https://www.mit.gov.it/come-fare-per/patenti-mezzi-e-abilitazioni/conseguimento-patente-d1-d" },
+};
+
+for (const category of licenseCategories) {
+  const detail = italianDetails[category.slug];
+  if (!detail) continue;
+  Object.assign(category, detail, { priceLabel: formatEUR(detail.priceCents ?? category.priceCents) });
+  category.subcategories = category.slug === "a"
+    ? [{ code: "A1", label: "Motocicli leggeri" }, { code: "A2", label: "Motocicli medi" }, { code: "A", label: "Motocicli senza limitazioni" }]
+    : category.slug === "c"
+      ? [{ code: "C1", label: "Autocarri leggeri" }, { code: "C", label: "Autocarri" }, { code: "CE", label: "Autocarri con rimorchio" }]
+      : category.slug === "d"
+        ? [{ code: "D1", label: "Minibus" }, { code: "D", label: "Autobus" }, { code: "DE", label: "Autobus con rimorchio" }]
+        : category.subcategories;
+}
+
+// La categoria T appartiene alla classificazione olandese usata dal progetto originale.
+// Non viene mostrata nella variante italiana.
+licenseCategories.splice(licenseCategories.findIndex((category) => category.slug === "t"), 1);
 
 export function getCategory(slug: string) {
   return licenseCategories.find((c) => c.slug === slug);

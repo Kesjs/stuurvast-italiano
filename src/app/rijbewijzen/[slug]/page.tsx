@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = getCategory(slug);
   if (!cat) return {};
   return {
-    title: `Rijbewijs ${cat.code}: ${cat.vehicleType}`,
+    title: `Patente ${cat.code}: ${cat.vehicleType}`,
     description: `${cat.summary} Richtprijs ${cat.priceLabel}.`,
   };
 }
@@ -41,7 +41,7 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <main>
       <PageHeader
-        eyebrow={`Rijbewijs ${cat.code}`}
+        eyebrow={`Patente ${cat.code}`}
         image={{
           src:
             cat.slug === "am"
@@ -49,16 +49,16 @@ export default async function CategoryPage({ params }: Props) {
               : cat.slug === "a"
                 ? "/images/motor.webp"
                 : "/images/hero.webp",
-          alt: `Illustratief beeld passend bij rijbewijs ${cat.code}`,
+          alt: `Immagine illustrativa per la patente ${cat.code}`,
         }}
         title={cat.vehicleType}
         intro={cat.summary}
       >
         <ButtonLink href={`/reserveren?categorie=${cat.slug}`}>
-          Aanvraag sturen
+          Invia una richiesta
         </ButtonLink>
         <ButtonLink href="/pakketten" variant="ghost">
-          Pakketten bekijken
+          Scopri i pacchetti
         </ButtonLink>
       </PageHeader>
 
@@ -67,7 +67,7 @@ export default async function CategoryPage({ params }: Props) {
           <div className="space-y-10">
             <div>
               <h2 className="text-[21px] font-bold">
-                Welke voertuigen vallen hieronder?
+                Quali veicoli posso guidare?
               </h2>
               <ul className="mt-3 space-y-1">
                 {cat.vehicles.map((v) => (
@@ -83,7 +83,7 @@ export default async function CategoryPage({ params }: Props) {
 
             {cat.subcategories.length > 0 && (
               <div>
-                <h2 className="text-[21px] font-bold">Subcategorieën</h2>
+                <h2 className="text-[21px] font-bold">Sottocategorie</h2>
                 <div className="mt-3 flex flex-wrap gap-3">
                   {cat.subcategories.map((s) => (
                     <div
@@ -99,7 +99,7 @@ export default async function CategoryPage({ params }: Props) {
             )}
 
             <div>
-              <h2 className="text-[21px] font-bold">Voorwaarden</h2>
+              <h2 className="text-[21px] font-bold">Requisiti</h2>
               <ul className="mt-3 space-y-1 text-slate">
                 {cat.requirements.map((r) => (
                   <li key={r} className="flex gap-2">
@@ -112,7 +112,7 @@ export default async function CategoryPage({ params }: Props) {
 
             <div>
               <h2 className="text-[21px] font-bold">
-                Zo verloopt de opleiding
+                Come si svolge il percorso
               </h2>
               <ol className="mt-4 space-y-4">
                 {cat.steps.map((s, i) => (
@@ -128,13 +128,12 @@ export default async function CategoryPage({ params }: Props) {
                 ))}
               </ol>
               <p className="mt-4 text-[14px] text-slate">
-                De theorie bereidt je voor, maar vervangt het officiële
-                CBR-examen niet.{" "}
+                La teoria ti prepara, ma non sostituisce l'esame ufficiale italiano.{" "}
                 <a
                   href="/theorie"
                   className="font-bold text-vivid-indigo underline"
                 >
-                  Lees meer over theorie en CBR
+                  Consulta le informazioni ufficiali
                 </a>
                 .
               </p>
@@ -146,14 +145,19 @@ export default async function CategoryPage({ params }: Props) {
             <p className="mt-3 text-[34px] font-bold leading-none">
               {cat.priceLabel}
             </p>
-            <p className="mt-1 text-[14px] text-slate">{cat.priceBasis}</p>
+            <p className="mt-1 text-[14px] text-slate">Stima indicativa per il percorso formativo</p>
             <p className="mt-4 text-[13px] text-slate">{priceDisclaimer}</p>
             <ButtonLink
               href={`/reserveren?categorie=${cat.slug}`}
               className="mt-5 w-full"
             >
-              Aanvraag sturen
+              Invia una richiesta
             </ButtonLink>
+            {cat.officialUrl && (
+              <a href={cat.officialUrl} target="_blank" rel="noreferrer" className="mt-4 block text-[13px] font-bold text-vivid-indigo underline">
+                Verifica requisiti e tariffe ufficiali →
+              </a>
+            )}
           </aside>
         </div>
       </Section>
@@ -187,8 +191,8 @@ export default async function CategoryPage({ params }: Props) {
 
       <Section
         tone={cat.priceRows ? "gray" : "white"}
-        title="Pakketten en opties"
-        intro="Vraag welke lessen en opties beschikbaar zijn voor dit rijbewijs. We bespreken het traject en de kosten met je."
+        title="Pacchetti e opzioni"
+        intro="Chiedi quali lezioni e opzioni sono disponibili per questa patente. Valuteremo insieme percorso e costi."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {pkgs.map((p) => (
@@ -197,14 +201,14 @@ export default async function CategoryPage({ params }: Props) {
         </div>
         {pkgs.length === 0 && (
           <ButtonLink href={`/reserveren?categorie=${cat.slug}`}>
-            Vraag naar de mogelijkheden
+            Chiedi informazioni
           </ButtonLink>
         )}
       </Section>
 
       <Section
         tone={cat.priceRows ? "white" : "gray"}
-        title="Veelgestelde vragen"
+        title="Domande frequenti"
       >
         <div className="max-w-3xl">
           <Accordion items={cat.faq} />
