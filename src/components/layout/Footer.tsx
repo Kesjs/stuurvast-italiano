@@ -25,6 +25,9 @@ export function Footer() {
             <li>
               <a href={site.emailHref}>{site.email}</a>
             </li>
+            <li>
+              <a href={site.phoneHref}>{site.phone}</a>
+            </li>
           </ul>
         </div>
         <div>
