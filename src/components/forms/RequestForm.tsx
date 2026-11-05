@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { Field, Consent, inputClass, selectClass } from "./Field";
+import { Field, Consent, inputClass } from "./Field";
+import { CustomSelect } from "./CustomSelect";
 import { requestSchema, fieldErrors } from "@/lib/validation";
 import { licenseCategories } from "@/data/license-categories";
 import { packages } from "@/data/packages";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { translate, translateText } from "@/i18n/translations";
 import { useLocale } from "@/components/i18n/LanguageProvider";
 
@@ -229,24 +229,15 @@ export function RequestForm({
             error={localize(errors.categorie)}
             optionalLabel={localize("(optioneel)")}
           >
-            <div className="relative">
-              <select
-                id="categorie"
-                name="categorie"
-                value={values.categorie}
-                onChange={update("categorie")}
-                className={selectClass}
-                {...aria("categorie")}
-              >
-                <option value="">{localize("Nog niet zeker")}</option>
-                {licenseCategories.map((c) => (
-                  <option key={c.slug} value={c.code}>
-                    {localizeText(`${c.code} · ${c.vehicleType}`)}
-                  </option>
-                ))}
-              </select>
-              <ChevronDownIcon aria-hidden className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate" />
-            </div>
+            <CustomSelect
+              id="categorie"
+              value={values.categorie}
+              onChange={(value) => update("categorie")({ target: { value } } as React.ChangeEvent<HTMLInputElement>)}
+              placeholder={localize("Nog niet zeker") ?? "Nog niet zeker"}
+              options={licenseCategories.map((c) => ({ value: c.code, label: localizeText(`${c.code} · ${c.vehicleType}`) }))}
+              invalid={!!errors.categorie}
+              describedBy={errors.categorie ? "categorie-error" : undefined}
+            />
           </Field>
         )}
       </div>
@@ -257,24 +248,15 @@ export function RequestForm({
             error={localize(errors.pakket)}
             optionalLabel={localize("(optioneel)")}
           >
-          <div className="relative">
-            <select
-              id="pakket"
-              name="pakket"
-              value={values.pakket}
-              onChange={update("pakket")}
-              className={selectClass}
-              {...aria("pakket")}
-            >
-              <option value="">{localize("Nog niet zeker")}</option>
-              {packages.map((p) => (
-                <option key={p.slug} value={p.name}>
-                    {localizeText(`${p.name} · ${p.priceLabel}`)}
-                </option>
-              ))}
-            </select>
-            <ChevronDownIcon aria-hidden className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate" />
-          </div>
+          <CustomSelect
+            id="pakket"
+            value={values.pakket}
+            onChange={(value) => update("pakket")({ target: { value } } as React.ChangeEvent<HTMLInputElement>)}
+            placeholder={localize("Nog niet zeker") ?? "Nog niet zeker"}
+            options={packages.map((p) => ({ value: p.name, label: localizeText(`${p.name} · ${p.priceLabel}`) }))}
+            invalid={!!errors.pakket}
+            describedBy={errors.pakket ? "pakket-error" : undefined}
+          />
         </Field>
       )}
       <Field

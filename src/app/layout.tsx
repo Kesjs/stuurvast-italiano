@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { site } from "@/data/site";
 import { MotionRoot } from "@/components/ui/MotionRoot";
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -59,6 +60,7 @@ export default function RootLayout({
           <Navbar />
           <MotionRoot>{children}</MotionRoot>
           <Footer />
+          <WhatsAppButton />
           {process.env.BUSINESS_DETAILS_VERIFIED === "true" && (
             <script
               type="application/ld+json"

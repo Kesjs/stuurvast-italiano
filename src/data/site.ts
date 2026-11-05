@@ -8,8 +8,8 @@ export const site = {
   city: "Utrecht",
   phone: "+39 351 190 6654",
   phoneHref: "tel:+393511906654",
-  email: process.env.EMAIL_TO ?? "contact@stuurvast-italia.nl",
-  emailHref: `mailto:${process.env.EMAIL_TO ?? "contact@stuurvast-italia.nl"}`,
+  email: process.env.EMAIL_TO ?? "contact@patentestuurvast.it",
+  emailHref: `mailto:${process.env.EMAIL_TO ?? "contact@patentestuurvast.it"}`,
   kvk: "",
   serviceArea: "Utrecht e comuni limitrofi",
   // Horaires: à compléter par Stuurvast. Laisser vide tant que non confirmés.
