@@ -130,7 +130,7 @@ export async function sendRequestEmails(d: {
       subject: `${label} — ${d.naam}`,
       html: wrap(
         `<div style="border-bottom:1px solid #e5e5f4;padding-bottom:16px;margin-bottom:18px">
-          <p style="margin:0 0 6px;color:#4d4bd5;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Stuurvast Autoscuola</p>
+          <p style="margin:0 0 6px;color:#4d4bd5;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">${esc(site.name)}</p>
           <h2 style="margin:0;font-size:24px;line-height:1.2">${esc(label)}</h2>
           <p style="margin:8px 0 0;color:#686878">Ricevuta il ${esc(receivedAt)}</p>
         </div>

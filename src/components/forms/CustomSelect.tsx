@@ -53,9 +53,9 @@ export function CustomSelect({
             setOpen(true);
           }
         }}
-        className="flex min-h-11 w-full items-center justify-between rounded-[7.6px] border border-fog bg-pure-white px-3 py-[10px] text-left text-[16px] transition-[border-color,box-shadow] hover:border-vivid-indigo focus:border-vivid-indigo focus:outline-none focus:ring-2 focus:ring-vivid-indigo/20 aria-[invalid=true]:border-error sm:text-[15px]"
+        className={`flex min-h-11 w-full items-center justify-between rounded-[7.6px] border px-3 py-[10px] text-left text-[16px] transition-[border-color,background-color,box-shadow] hover:border-vivid-indigo focus:border-vivid-indigo focus:outline-none focus:ring-2 focus:ring-vivid-indigo/20 aria-[invalid=true]:border-error sm:text-[15px] ${selected ? "border-vivid-indigo/50 bg-pale-lilac/20" : "border-fog bg-pure-white"}`}
       >
-        <span className={selected ? "text-midnight-ink" : "text-fog"}>
+        <span className={selected ? "font-medium text-midnight-ink" : "text-fog"}>
           {selected?.label ?? placeholder}
         </span>
         <ChevronDownIcon

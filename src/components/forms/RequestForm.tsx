@@ -67,6 +67,16 @@ export function RequestForm({
         return next;
       });
     };
+  const updateValue = (k: keyof typeof values, value: string) => {
+    setValues((current) => ({ ...current, [k]: value }));
+    setFormError("");
+    setErrors((current) => {
+      if (!current[k]) return current;
+      const next = { ...current };
+      delete next[k];
+      return next;
+    });
+  };
   const aria = (k: string) => ({
     "aria-invalid": !!errors[k],
     "aria-describedby": errors[k] ? `${k}-error` : undefined,
@@ -186,7 +196,7 @@ export function RequestForm({
             onChange={update("naam")}
             required
             maxLength={100}
-            className={inputClass}
+            className={`${inputClass} ${values.naam ? "border-vivid-indigo/50 bg-pale-lilac/20" : ""}`}
             {...aria("naam")}
           />
         </Field>
@@ -200,7 +210,7 @@ export function RequestForm({
             onChange={update("email")}
             required
             maxLength={200}
-            className={inputClass}
+            className={`${inputClass} ${values.email ? "border-vivid-indigo/50 bg-pale-lilac/20" : ""}`}
             {...aria("email")}
           />
         </Field>
@@ -218,7 +228,7 @@ export function RequestForm({
             value={values.telefoon}
             onChange={update("telefoon")}
             maxLength={30}
-            className={inputClass}
+            className={`${inputClass} ${values.telefoon ? "border-vivid-indigo/50 bg-pale-lilac/20" : ""}`}
             {...aria("telefoon")}
           />
         </Field>
@@ -232,7 +242,7 @@ export function RequestForm({
             <CustomSelect
               id="categorie"
               value={values.categorie}
-              onChange={(value) => update("categorie")({ target: { value } } as React.ChangeEvent<HTMLInputElement>)}
+              onChange={(value) => updateValue("categorie", value)}
               placeholder={localize("Nog niet zeker") ?? "Nog niet zeker"}
               options={licenseCategories.map((c) => ({ value: c.code, label: localizeText(`${c.code} · ${c.vehicleType}`) }))}
               invalid={!!errors.categorie}
@@ -251,7 +261,7 @@ export function RequestForm({
           <CustomSelect
             id="pakket"
             value={values.pakket}
-            onChange={(value) => update("pakket")({ target: { value } } as React.ChangeEvent<HTMLInputElement>)}
+            onChange={(value) => updateValue("pakket", value)}
             placeholder={localize("Nog niet zeker") ?? "Nog niet zeker"}
             options={packages.map((p) => ({ value: p.name, label: localizeText(`${p.name} · ${p.priceLabel}`) }))}
             invalid={!!errors.pakket}
@@ -277,7 +287,7 @@ export function RequestForm({
           required
           minLength={5}
           maxLength={2000}
-          className={inputClass}
+          className={`${inputClass} ${values.bericht ? "border-vivid-indigo/50 bg-pale-lilac/20" : ""}`}
           aria-describedby={errors.bericht ? "bericht-error" : "bericht-hint"}
           aria-invalid={!!errors.bericht}
         />

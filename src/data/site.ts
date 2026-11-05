@@ -1,7 +1,7 @@
 export const site = {
-  name: "Stuurvast Autoscuola",
+  name: "Patente Stuurvast",
   tagline: "La tua patente, passo dopo passo",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://stuurvast-italia.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://patentestuurvast.it",
   address: "Utrecht e comuni limitrofi",
   street: "",
   postalCode: "",
