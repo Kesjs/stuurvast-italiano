@@ -74,7 +74,11 @@ export function CustomSelect({
             type="button"
             role="option"
             aria-selected={!value}
-            onClick={() => { onChange(""); setOpen(false); }}
+            onPointerDown={(event) => {
+              event.preventDefault();
+              onChange("");
+              setOpen(false);
+            }}
             className="w-full rounded-[7px] px-3 py-2 text-left text-[15px] text-slate hover:bg-frost-gray"
           >
             {placeholder}
@@ -85,10 +89,15 @@ export function CustomSelect({
               type="button"
               role="option"
               aria-selected={option.value === value}
-              onClick={() => { onChange(option.value); setOpen(false); }}
-              className={`w-full rounded-[7px] px-3 py-2 text-left text-[15px] hover:bg-frost-gray ${option.value === value ? "bg-pale-lilac font-bold text-vivid-indigo" : "text-midnight-ink"}`}
+              onPointerDown={(event) => {
+                event.preventDefault();
+                onChange(option.value);
+                setOpen(false);
+              }}
+              className={`flex w-full items-center justify-between rounded-[7px] px-3 py-2 text-left text-[15px] hover:bg-frost-gray ${option.value === value ? "bg-pale-lilac font-bold text-vivid-indigo" : "text-midnight-ink"}`}
             >
               {option.label}
+              {option.value === value && <span aria-hidden>✓</span>}
             </button>
           ))}
         </div>
