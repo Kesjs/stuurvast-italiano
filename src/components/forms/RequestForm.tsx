@@ -42,6 +42,13 @@ export function RequestForm({
   useEffect(() => {
     startedAt.current = Date.now();
   }, []);
+  useEffect(() => {
+    setValues((current) => ({
+      ...current,
+      categorie: defaultCategory || current.categorie,
+      pakket: defaultPackage || current.pakket,
+    }));
+  }, [defaultCategory, defaultPackage]);
 
   const set =
     (k: keyof typeof values) =>
